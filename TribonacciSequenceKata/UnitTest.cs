@@ -7,20 +7,28 @@ namespace TribonacciSequenceKata
     [TestClass]
     public class UnitTest
     {
-        //[TestMethod]
-        //public void Input001_Amount0_return0()
-        //{
-        //    var expected = 0;
-        //    var actual = TribonacciSequence.Sum(0, 0, 0, 0);
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestMethod]
+        public void Input001_Amount0_return0()
+        {
+            var expected = new List<int> { 0 };
+            var actual = TribonacciSequence.Sum(0, 0, 1, 0);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Input001_Amount2_return00()
+        {
+            var expected = new List<int> { 0, 0 };
+            var actual = TribonacciSequence.Sum(0, 0, 1, 2);
+            CollectionAssert.AreEqual(expected, actual);
+        }
 
         [TestMethod]
         public void Input001_Amount3_return0()
         {
-            var expected = new List<int>{0,0,1};
+            var expected = new List<int> { 0, 0, 1 };
             var actual = TribonacciSequence.Sum(0, 0, 1, 3);
-            Assert.AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -31,7 +39,7 @@ namespace TribonacciSequenceKata
                 0,0,1,1
             };
             var actual = TribonacciSequence.Sum(0, 0, 1, 4);
-            Assert.AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
 
@@ -42,16 +50,10 @@ namespace TribonacciSequenceKata
         {
             List<int> numbers = CreateList(num1, num2, num3);
 
-            if (amount < 3)
-            {
-                for (int i = 0; i < amount; i++)
-                {
-                    return numbers;
-                }
-            }
-                
+            if (amount < 4)
+               return new List<int> { 0 };
 
-            for (int i = 3; i < amount ; i++)
+            for (int i = 3; i < amount; i++)
             {
                 numbers.Add(numbers[i - 3] + numbers[i - 2] + numbers[i - 1]);
             }
