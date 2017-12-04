@@ -69,9 +69,6 @@ namespace TribonacciSequenceKata
                 return numbers2;
             }
                 
-               
-                //return new List<int> { 0 };
-
             for (int i = 3; i < amount; i++)
             {
                 numbers.Add(numbers[i - 3] + numbers[i - 2] + numbers[i - 1]);
