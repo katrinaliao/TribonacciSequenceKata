@@ -11,7 +11,7 @@ namespace TribonacciSequenceKata
         public void Input001_Amount0_return0()
         {
             var expected = new List<int> { 0 };
-            var actual = TribonacciSequence.Sum(0, 0, 1, 0);
+            var actual = TribonacciSequence.GenerateList(0, 0, 1, 0);
             CollectionAssert.AreEqual(expected, actual);
         }
 
@@ -19,7 +19,7 @@ namespace TribonacciSequenceKata
         public void Input001_Amount2_return00()
         {
             var expected = new List<int> { 0, 0 };
-            var actual = TribonacciSequence.Sum(0, 0, 1, 2);
+            var actual = TribonacciSequence.GenerateList(0, 0, 1, 2);
             CollectionAssert.AreEqual(expected, actual);
         }
 
@@ -27,7 +27,7 @@ namespace TribonacciSequenceKata
         public void Input001_Amount3_return0()
         {
             var expected = new List<int> { 0, 0, 1 };
-            var actual = TribonacciSequence.Sum(0, 0, 1, 3);
+            var actual = TribonacciSequence.GenerateList(0, 0, 1, 3);
             CollectionAssert.AreEqual(expected, actual);
         }
 
@@ -38,7 +38,17 @@ namespace TribonacciSequenceKata
             {
                 0,0,1,1
             };
-            var actual = TribonacciSequence.Sum(0, 0, 1, 4);
+            var actual = TribonacciSequence.GenerateList(0, 0, 1, 4);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Input001_Amount8_return0()
+        {
+            var expected = new List<int>()
+            {
+                0,0,1,1,2,4,7,13
+            };
+            var actual = TribonacciSequence.GenerateList(0, 0, 1, 8);
             CollectionAssert.AreEqual(expected, actual);
         }
     }
@@ -46,12 +56,21 @@ namespace TribonacciSequenceKata
     public static class TribonacciSequence
     {
         //前三個數字之和
-        public static List<int> Sum(int num1, int num2, int num3, int amount)
+        public static List<int> GenerateList(int num1, int num2, int num3, int amount)
         {
             List<int> numbers = CreateList(num1, num2, num3);
-
+            List<int> numbers2 = new List<int>();
             if (amount < 4)
-               return new List<int> { 0 };
+            {
+                for (int i = 0; i < amount; i++)
+                {
+                    numbers2.Add(numbers[i]);
+                }
+                return numbers2;
+            }
+                
+               
+                //return new List<int> { 0 };
 
             for (int i = 3; i < amount; i++)
             {
